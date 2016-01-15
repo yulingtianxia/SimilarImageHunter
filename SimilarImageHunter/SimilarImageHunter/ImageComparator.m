@@ -48,7 +48,7 @@
 - (double)similarityBetween:(NSString *)sourceFile to:(NSString *)targetFile
 {
     double result;
-    double weightOfAspectRatio = 0.5;
+    double weightOfAspectRatio = 0.3;
     
     NSImage *source = [[NSImage alloc] initWithContentsOfFile:sourceFile];
     NSImage *target = [[NSImage alloc] initWithContentsOfFile:targetFile];
