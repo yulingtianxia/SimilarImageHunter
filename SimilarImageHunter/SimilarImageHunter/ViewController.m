@@ -9,6 +9,11 @@
 #import "ViewController.h"
 #import "ImageComparator.h"
 
+#define SOURCE_PATH @"SOURCE_PATH"
+#define CHILDREN @"children"
+#define TARGET_PATH @"targetpath"
+#define SIMILARITY @"similarity"
+
 @interface ViewController ()<NSOutlineViewDelegate, NSOutlineViewDataSource>
 @property (nonnull,nonatomic) ImageComparator *comparator;
 @property (weak) IBOutlet NSTextField *sourcePathTF;
@@ -57,21 +62,21 @@
         if (![similarist isEqualToString:@""]) {
             __block BOOL hasPath = NO;
             [self.resultData enumerateObjectsUsingBlock:^(NSDictionary<NSString *,id> * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                if ([obj[@"parent"] isEqualToString:sourcePath]) {
+                if ([obj[SOURCE_PATH] isEqualToString:sourcePath]) {
                     *stop = YES;
                     hasPath = YES;
                     NSMutableDictionary *dic = [obj mutableCopy];
-                    NSMutableArray *arr = [dic[@"children"] mutableCopy];
+                    NSMutableArray *arr = [dic[CHILDREN] mutableCopy];
                     if (!arr) {
                         arr = [NSMutableArray array];
                     }
-                    [arr addObject:similarist];
-                    dic[@"children"] = [arr copy];
+                    [arr addObject:@{TARGET_PATH:similarist, SIMILARITY:max}];
+                    dic[CHILDREN] = [arr copy];
                     obj = [dic copy];
                 }
             }];
             if (!hasPath) {
-                [self.resultData addObject:@{@"parent":sourcePath, @"children":@[similarist]}];
+                [self.resultData addObject:@{SOURCE_PATH:sourcePath, CHILDREN:@[@{TARGET_PATH:similarist, SIMILARITY:max}]}];
             }
         }
     }
@@ -88,7 +93,7 @@
     }
     
     if ([item isKindOfClass:[NSDictionary class]]) {
-        return [[item objectForKey:@"children"] count];
+        return [[item objectForKey:CHILDREN] count];
     }
     
     return 0;
@@ -101,7 +106,7 @@
     }
     
     if ([item isKindOfClass:[NSDictionary class]]) {
-        return [[item objectForKey:@"children"] objectAtIndex:index];
+        return [[item objectForKey:CHILDREN] objectAtIndex:index];
     }
     
     return nil;
@@ -118,14 +123,15 @@
 
 - (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
 {
-    if ([[tableColumn identifier] isEqualToString:@"children"]) {
-        if ([item isKindOfClass:[NSDictionary class]]) {
-            return [NSString stringWithFormat:@"%lu kids",[[item objectForKey:@"children"] count]];
-        }
-        return item;
+    if ([[tableColumn identifier] isEqualToString:CHILDREN]) {
+        return [item objectForKey:SIMILARITY];
     }else{
         if ([item isKindOfClass:[NSDictionary class]]) {
-            return [item objectForKey:@"parent"];
+            NSString *sourcePath = [item objectForKey:SOURCE_PATH];
+            if (sourcePath) {
+                return sourcePath;
+            }
+            return [item objectForKey:TARGET_PATH];
         }
     }
     
