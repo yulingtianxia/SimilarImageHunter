@@ -9,13 +9,14 @@
 #import "ViewController.h"
 #import "ImageComparator.h"
 
-@interface ViewController ()
+@interface ViewController ()<NSOutlineViewDelegate, NSOutlineViewDataSource>
 @property (nonnull,nonatomic) ImageComparator *comparator;
 @property (weak) IBOutlet NSTextField *sourcePathTF;
 @property (weak) IBOutlet NSTextField *targetPathTF;
 @property (weak) IBOutlet NSButton *huntBtn;
-@property (weak) IBOutlet NSTextField *resultPathTF;
+@property (weak) IBOutlet NSOutlineView *resultTable;
 
+@property (nonnull,nonatomic) NSMutableArray<NSDictionary<NSString *,id> *> *resultData;
 @end
 
 @implementation ViewController
@@ -23,6 +24,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.comparator = [ImageComparator new];
+    self.resultTable.delegate = self;
+    self.resultTable.dataSource = self;
 }
 
 - (void)setRepresentedObject:(id)representedObject {
@@ -33,10 +36,10 @@
 
 - (IBAction)huntClick:(NSButton *)sender {
     
+    self.resultData = [NSMutableArray array];
     NSMutableDictionary<NSString *,NSNumber *> *similarityMap = [NSMutableDictionary dictionary];
     NSArray<NSString *> *sourcePaths = [self.comparator collectImagePathsInRootPath:self.sourcePathTF.stringValue];
     NSArray<NSString *> *targetPaths = [self.comparator collectImagePathsInRootPath:self.targetPathTF.stringValue];
-    NSString *result=@"";
     
     for (NSString *sourcePath in sourcePaths) {
         [targetPaths enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -52,10 +55,81 @@
             }
         }];
         if (![similarist isEqualToString:@""]) {
-            result = [result stringByAppendingString:[NSString stringWithFormat:@"%@\n",similarist]];
+            __block BOOL hasPath = NO;
+            [self.resultData enumerateObjectsUsingBlock:^(NSDictionary<NSString *,id> * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if ([obj[@"parent"] isEqualToString:sourcePath]) {
+                    *stop = YES;
+                    hasPath = YES;
+                    NSMutableDictionary *dic = [obj mutableCopy];
+                    NSMutableArray *arr = [dic[@"children"] mutableCopy];
+                    if (!arr) {
+                        arr = [NSMutableArray array];
+                    }
+                    [arr addObject:similarist];
+                    dic[@"children"] = [arr copy];
+                    obj = [dic copy];
+                }
+            }];
+            if (!hasPath) {
+                [self.resultData addObject:@{@"parent":sourcePath, @"children":@[similarist]}];
+            }
         }
     }
-    self.resultPathTF.stringValue = result;
+    
+    [self.resultTable reloadData];
+}
+
+#pragma mark NSOutlineViewDataSource
+
+- (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
+{
+    if (item == nil) {
+        return self.resultData.count;
+    }
+    
+    if ([item isKindOfClass:[NSDictionary class]]) {
+        return [[item objectForKey:@"children"] count];
+    }
+    
+    return 0;
+}
+
+- (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item
+{
+    if (item == nil) {
+        return self.resultData[index];
+    }
+    
+    if ([item isKindOfClass:[NSDictionary class]]) {
+        return [[item objectForKey:@"children"] objectAtIndex:index];
+    }
+    
+    return nil;
+}
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item
+{
+    if ([item isKindOfClass:[NSDictionary class]]) {
+        return YES;
+    }else {
+        return NO;
+    }
+}
+
+- (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item
+{
+    if ([[tableColumn identifier] isEqualToString:@"children"]) {
+        if ([item isKindOfClass:[NSDictionary class]]) {
+            return [NSString stringWithFormat:@"%lu kids",[[item objectForKey:@"children"] count]];
+        }
+        return item;
+    }else{
+        if ([item isKindOfClass:[NSDictionary class]]) {
+            return [item objectForKey:@"parent"];
+        }
+    }
+    
+    return nil;
 }
 
 @end

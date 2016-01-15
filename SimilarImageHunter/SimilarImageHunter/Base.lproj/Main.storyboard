@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
     </dependencies>
     <scenes>
@@ -684,17 +683,6 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="BzW-oj-fBo">
-                                        <rect key="frame" x="18" y="20" width="414" height="174"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="174" id="jcI-BJ-LFv"/>
-                                        </constraints>
-                                        <textFieldCell key="cell" truncatesLastVisibleLine="YES" selectable="YES" sendsActionOnEndEditing="YES" title="满足要求的图片路径" placeholderString="" id="Aci-aG-KPA">
-                                            <font key="font" size="13" name=".PingFangSC-Regular"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dkC-Mb-DT0">
                                         <rect key="frame" x="18" y="262" width="56" height="17"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="原始路径" id="ppf-Ga-x0z">
@@ -729,23 +717,81 @@
                                             <action selector="huntClick:" target="XfG-lQ-9wD" id="G2U-Xf-I5K"/>
                                         </connections>
                                     </button>
+                                    <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UaU-dU-mLS">
+                                        <rect key="frame" x="20" y="20" width="410" height="174"/>
+                                        <clipView key="contentView" id="W7w-je-Xxv">
+                                            <rect key="frame" x="1" y="23" width="408" height="150"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" headerView="SXB-tF-dyo" indentationPerLevel="16" outlineTableColumn="FMO-ub-FNK" id="l5y-md-h9i">
+                                                    <rect key="frame" x="0.0" y="0.0" width="408" height="150"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <size key="intercellSpacing" width="3" height="2"/>
+                                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                                    <tableColumns>
+                                                        <tableColumn width="116" minWidth="40" maxWidth="1000" id="FMO-ub-FNK">
+                                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
+                                                                <font key="font" metaFont="smallSystem"/>
+                                                                <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                                            </tableHeaderCell>
+                                                            <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="6jv-jE-LEq">
+                                                                <font key="font" metaFont="system"/>
+                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                            <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                        </tableColumn>
+                                                        <tableColumn identifier="children" width="286" minWidth="40" maxWidth="1000" id="bDa-FK-S8F">
+                                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
+                                                                <font key="font" metaFont="smallSystem"/>
+                                                                <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                                            </tableHeaderCell>
+                                                            <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="EeP-dZ-mB4">
+                                                                <font key="font" metaFont="system"/>
+                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                            <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                        </tableColumn>
+                                                    </tableColumns>
+                                                </outlineView>
+                                            </subviews>
+                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </clipView>
+                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="Y3O-zq-aBc">
+                                            <rect key="frame" x="1" y="97.367653250694275" width="192.46654510498047" height="16"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </scroller>
+                                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Oi3-PJ-1EZ">
+                                            <rect key="frame" x="224" y="17" width="15" height="102"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </scroller>
+                                        <tableHeaderView key="headerView" id="SXB-tF-dyo">
+                                            <rect key="frame" x="0.0" y="0.0" width="408" height="23"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableHeaderView>
+                                    </scrollView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="twc-4L-mWs" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="2LU-xC-WlG"/>
                                     <constraint firstItem="dkC-Mb-DT0" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="52P-qM-RRf"/>
                                     <constraint firstItem="twc-4L-mWs" firstAttribute="leading" secondItem="dkC-Mb-DT0" secondAttribute="trailing" constant="8" id="9Yt-eV-N79"/>
+                                    <constraint firstAttribute="bottom" secondItem="UaU-dU-mLS" secondAttribute="bottom" constant="20" symbolic="YES" id="A1J-FL-UBW"/>
+                                    <constraint firstAttribute="trailing" secondItem="UaU-dU-mLS" secondAttribute="trailing" constant="20" symbolic="YES" id="Ce5-YQ-HfE"/>
                                     <constraint firstAttribute="trailing" secondItem="cbm-fj-Y4W" secondAttribute="trailing" constant="20" id="Eis-hK-zUg"/>
+                                    <constraint firstItem="UaU-dU-mLS" firstAttribute="top" secondItem="rVg-Zm-5BY" secondAttribute="bottom" constant="8" symbolic="YES" id="Hf1-kP-l3r"/>
                                     <constraint firstItem="HI3-Rg-aGD" firstAttribute="baseline" secondItem="cbm-fj-Y4W" secondAttribute="baseline" id="NQw-tm-Btq"/>
                                     <constraint firstItem="cbm-fj-Y4W" firstAttribute="leading" secondItem="HI3-Rg-aGD" secondAttribute="trailing" constant="8" id="OhU-3n-MhE"/>
                                     <constraint firstItem="rVg-Zm-5BY" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="RQV-dy-Ltm"/>
                                     <constraint firstItem="cbm-fj-Y4W" firstAttribute="top" secondItem="twc-4L-mWs" secondAttribute="bottom" constant="8" id="Rm8-Ie-yEM"/>
                                     <constraint firstAttribute="trailing" secondItem="twc-4L-mWs" secondAttribute="trailing" constant="20" id="UDJ-Dt-ufp"/>
-                                    <constraint firstItem="BzW-oj-fBo" firstAttribute="top" secondItem="rVg-Zm-5BY" secondAttribute="bottom" constant="8" id="bF5-o2-gJm"/>
                                     <constraint firstItem="HI3-Rg-aGD" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="elj-Jm-lAZ"/>
                                     <constraint firstItem="dkC-Mb-DT0" firstAttribute="baseline" secondItem="twc-4L-mWs" secondAttribute="baseline" id="jgN-g0-PZ2"/>
                                     <constraint firstItem="rVg-Zm-5BY" firstAttribute="top" secondItem="cbm-fj-Y4W" secondAttribute="bottom" constant="8" id="mlT-Xw-d3E"/>
-                                    <constraint firstItem="BzW-oj-fBo" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="qKM-AA-1e0"/>
-                                    <constraint firstAttribute="trailing" secondItem="BzW-oj-fBo" secondAttribute="trailing" constant="20" id="zVd-5W-UVf"/>
+                                    <constraint firstItem="UaU-dU-mLS" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="tPx-Be-LeR"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -758,7 +804,7 @@
                     </visualEffectView>
                     <connections>
                         <outlet property="huntBtn" destination="rVg-Zm-5BY" id="EHy-Vb-hoW"/>
-                        <outlet property="resultPathTF" destination="BzW-oj-fBo" id="8KM-EM-nAo"/>
+                        <outlet property="resultTable" destination="l5y-md-h9i" id="R29-fG-juR"/>
                         <outlet property="sourcePathTF" destination="twc-4L-mWs" id="u4n-v6-ZFV"/>
                         <outlet property="targetPathTF" destination="cbm-fj-Y4W" id="DKV-NM-bNt"/>
                     </connections>
