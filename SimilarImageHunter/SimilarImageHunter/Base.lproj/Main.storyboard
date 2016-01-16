@@ -668,7 +668,7 @@
         <scene sceneID="hIz-AP-VOD">
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" sceneMemberID="viewController">
-                    <visualEffectView key="view" wantsLayer="YES" appearanceType="vibrantLight" blendingMode="behindWindow" state="followsWindowActiveState" id="uKy-yM-nGX">
+                    <visualEffectView key="view" appearanceType="vibrantDark" blendingMode="behindWindow" state="active" id="uKy-yM-nGX">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
@@ -778,6 +778,26 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableHeaderView>
                                     </scrollView>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Lht-NF-l1v">
+                                        <rect key="frame" x="128" y="201" width="53" height="19"/>
+                                        <buttonCell key="cell" type="roundRect" title="CLEAR" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cJN-3U-Nan">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="cellTitle"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="clearClick:" target="XfG-lQ-9wD" id="IkZ-gR-exT"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Z2z-Ey-9O4">
+                                        <rect key="frame" x="270" y="201" width="62" height="19"/>
+                                        <buttonCell key="cell" type="roundRect" title="CANCEL" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Gnw-i3-Oxe">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="cellTitle"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="cancelClick:" target="XfG-lQ-9wD" id="Pyq-ZP-Lwn"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="twc-4L-mWs" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="2LU-xC-WlG"/>
@@ -791,11 +811,15 @@
                                     <constraint firstItem="cbm-fj-Y4W" firstAttribute="leading" secondItem="HI3-Rg-aGD" secondAttribute="trailing" constant="8" id="OhU-3n-MhE"/>
                                     <constraint firstItem="rVg-Zm-5BY" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="RQV-dy-Ltm"/>
                                     <constraint firstItem="cbm-fj-Y4W" firstAttribute="top" secondItem="twc-4L-mWs" secondAttribute="bottom" constant="8" id="Rm8-Ie-yEM"/>
+                                    <constraint firstItem="Z2z-Ey-9O4" firstAttribute="leading" secondItem="rVg-Zm-5BY" secondAttribute="trailing" constant="20" id="Sti-KO-vgc"/>
                                     <constraint firstAttribute="trailing" secondItem="twc-4L-mWs" secondAttribute="trailing" constant="20" id="UDJ-Dt-ufp"/>
                                     <constraint firstItem="HI3-Rg-aGD" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="elj-Jm-lAZ"/>
                                     <constraint firstItem="dkC-Mb-DT0" firstAttribute="baseline" secondItem="twc-4L-mWs" secondAttribute="baseline" id="jgN-g0-PZ2"/>
+                                    <constraint firstItem="Lht-NF-l1v" firstAttribute="baseline" secondItem="rVg-Zm-5BY" secondAttribute="baseline" id="lon-xw-TbL"/>
                                     <constraint firstItem="rVg-Zm-5BY" firstAttribute="top" secondItem="cbm-fj-Y4W" secondAttribute="bottom" constant="8" id="mlT-Xw-d3E"/>
                                     <constraint firstItem="UaU-dU-mLS" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="tPx-Be-LeR"/>
+                                    <constraint firstItem="Z2z-Ey-9O4" firstAttribute="baseline" secondItem="rVg-Zm-5BY" secondAttribute="baseline" id="tXf-7A-N8H"/>
+                                    <constraint firstItem="rVg-Zm-5BY" firstAttribute="leading" secondItem="Lht-NF-l1v" secondAttribute="trailing" constant="20" id="yP6-WL-9rE"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -807,6 +831,8 @@
                         </constraints>
                     </visualEffectView>
                     <connections>
+                        <outlet property="cancelBtn" destination="Z2z-Ey-9O4" id="jrC-Z6-BXR"/>
+                        <outlet property="clearBtn" destination="Lht-NF-l1v" id="dVm-6b-sQ7"/>
                         <outlet property="huntBtn" destination="rVg-Zm-5BY" id="EHy-Vb-hoW"/>
                         <outlet property="resultTable" destination="l5y-md-h9i" id="R29-fG-juR"/>
                         <outlet property="sourcePathTF" destination="twc-4L-mWs" id="u4n-v6-ZFV"/>

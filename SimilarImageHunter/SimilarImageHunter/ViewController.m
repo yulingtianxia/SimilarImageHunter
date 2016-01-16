@@ -20,7 +20,9 @@
 @property (weak) IBOutlet NSTextField *targetPathTF;
 @property (weak) IBOutlet NSButton *huntBtn;
 @property (weak) IBOutlet NSOutlineView *resultTable;
-
+@property (weak) IBOutlet NSButton *clearBtn;
+@property (weak) IBOutlet NSButton *cancelBtn;
+@property (nonatomic) BOOL *cancelledPtr;
 @property (nonnull,nonatomic) NSMutableArray<NSDictionary<NSString *,id> *> *resultData;
 @end
 
@@ -41,17 +43,25 @@
 
 - (IBAction)huntClick:(NSButton *)sender {
     sender.enabled = NO;
+    __block BOOL cancelled = NO;
+    self.resultData = [NSMutableArray array];
+    [self.resultTable reloadData];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        self.resultData = [NSMutableArray array];
         NSMutableDictionary<NSString *,NSNumber *> *similarityMap = [NSMutableDictionary dictionary];
         NSArray<NSString *> *sourcePaths = [self.comparator collectImagePathsInRootPath:self.sourcePathTF.stringValue];
         NSArray<NSString *> *targetPaths = [self.comparator collectImagePathsInRootPath:self.targetPathTF.stringValue];
         
         for (NSString *sourcePath in sourcePaths) {
-            [targetPaths enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (cancelled) {
+                break;
+            }
+            for (NSString *obj in targetPaths) {
+                if (cancelled) {
+                    break;
+                }
                 NSNumber *similarity = @([self.comparator similarityBetween:sourcePath to:obj]);
                 similarityMap[obj]=similarity;
-            }];
+            }
             __block NSNumber *max = @0;
             __block NSString *similarist = @"";
             [similarityMap enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSNumber * _Nonnull obj, BOOL * _Nonnull stop) {
@@ -77,9 +87,25 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             sender.enabled = YES;
             sender.highlighted = NO;
-            [self.resultTable reloadData];
+            if (!cancelled) {
+                [self.resultTable reloadData];
+            }
         });
     });
+    self.cancelledPtr = &cancelled;
+}
+
+- (IBAction)clearClick:(NSButton *)sender {
+    self.sourcePathTF.stringValue = @"";
+    self.targetPathTF.stringValue = @"";
+    [self.resultData removeAllObjects];
+    [self.resultTable reloadData];
+}
+
+- (IBAction)cancelClick:(NSButton *)sender {
+    if (self.cancelledPtr) {
+        *self.cancelledPtr = YES;
+    }
 }
 
 #pragma mark NSOutlineViewDataSource
@@ -147,5 +173,9 @@
         [[NSWorkspace sharedWorkspace] openFile:targetPath];
     }
 }
+
+#pragma mark NSOutlineViewDelegate
+
+
 
 @end
