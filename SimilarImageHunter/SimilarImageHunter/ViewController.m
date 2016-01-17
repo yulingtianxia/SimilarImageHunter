@@ -174,8 +174,4 @@
     }
 }
 
-#pragma mark NSOutlineViewDelegate
-
-
-
 @end

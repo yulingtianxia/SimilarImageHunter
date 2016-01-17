@@ -72,7 +72,7 @@
     NSDictionary<NSNumber *,NSNumber *> *sourcePixelVector = sourceVector[KEY_PIXELVECTOR];
     NSDictionary<NSNumber *,NSNumber *> *targetPixelVector = targetVector[KEY_PIXELVECTOR];
     
-    //向量余弦相似性
+    //向量余弦距离相似性
     __block double similarityOfPixelVector = 0;
     __block double targetRank = 0;
     __block double sourceRank = 0;
