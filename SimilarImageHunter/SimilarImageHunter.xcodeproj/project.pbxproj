@@ -32,6 +32,7 @@
 		A494D3DC1C4552BC00F6269D /* NSImage+Processor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+Processor.m"; sourceTree = "<group>"; };
 		A494D3DE1C455D9C00F6269D /* ImageComparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageComparator.h; sourceTree = "<group>"; };
 		A494D3DF1C455D9C00F6269D /* ImageComparator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageComparator.m; sourceTree = "<group>"; };
+		A4CC35361D095AA800A400F0 /* SimilarImageHunter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SimilarImageHunter.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +65,7 @@
 		A494D3C61C454CB800F6269D /* SimilarImageHunter */ = {
 			isa = PBXGroup;
 			children = (
+				A4CC35361D095AA800A400F0 /* SimilarImageHunter.entitlements */,
 				A494D3C71C454CB800F6269D /* AppDelegate.h */,
 				A494D3C81C454CB800F6269D /* AppDelegate.m */,
 				A494D3CD1C454CB800F6269D /* ViewController.h */,
@@ -120,6 +122,12 @@
 				TargetAttributes = {
 					A494D3C31C454CB800F6269D = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = D3RCVUP6VH;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -264,6 +272,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SimilarImageHunter/SimilarImageHunter.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = SimilarImageHunter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -277,6 +287,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SimilarImageHunter/SimilarImageHunter.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = SimilarImageHunter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
