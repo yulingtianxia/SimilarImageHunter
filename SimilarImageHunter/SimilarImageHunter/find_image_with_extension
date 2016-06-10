@@ -1,0 +1,1 @@
+find $1 -name '*.[Jj][Pp][Ee][Gg]' -or -name '*.[Pp][Nn][Gg]' -or -name '*.[Ii][Cc][Oo]' -or -name '*.[Tt][Ii][Ff][Ff]' -or -name '*.[Pp][Dd][Ff]' -or -name '*.[Jj][Pp]2' -or -name '*.[Ee][Xx][Rr]'

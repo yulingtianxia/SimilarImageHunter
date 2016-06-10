@@ -11,7 +11,6 @@
 
 @interface ImageComparator ()
 @property (nonatomic,nonnull) NSMutableDictionary<NSString *,NSDictionary *> *vectorCache;
-@property (nonatomic,nonnull) NSTask *imagePathsCollector;
 @end
 @implementation ImageComparator
 
@@ -20,49 +19,87 @@
     self = [super init];
     if (self) {
         _vectorCache = [NSMutableDictionary dictionary];
+        _checkExtension = YES;
     }
     return self;
 }
 
 - (NSArray<NSString *> *)collectImagePathsInRootPath:(NSString *)rootPath
 {
-    _imagePathsCollector = [[NSTask alloc] init];
-    _imagePathsCollector.launchPath = @"/bin/bash";
-    NSString *shellPath = [NSString stringWithFormat:@"%@%@",[NSBundle mainBundle].resourcePath,@"/cacheimages"];
-    _imagePathsCollector.arguments = @[shellPath,rootPath];
+    NSTask *imagePathsCollector;
+    imagePathsCollector = [[NSTask alloc] init];
+    imagePathsCollector.launchPath = @"/bin/bash";
+    NSString *shellPath;
+
+    if (self.checkExtension) {
+        shellPath = [NSString stringWithFormat:@"%@%@",[NSBundle mainBundle].resourcePath,@"/find_image_with_extension"];
+    }
+    else {
+        shellPath = [NSString stringWithFormat:@"%@%@",[NSBundle mainBundle].resourcePath,@"/find_image_without_extension"];
+    }
+    imagePathsCollector.arguments = @[shellPath,rootPath];
     NSPipe *pipe;
     pipe = [NSPipe pipe];
-    [_imagePathsCollector setStandardOutput: pipe];   //设置输出参数
+    [imagePathsCollector setStandardOutput: pipe];   //设置输出参数
     
     NSFileHandle *file;
     file = [pipe fileHandleForReading];   // 句柄
-    [_imagePathsCollector launch];
+    [imagePathsCollector launch];
     NSData *data;
     data = [file readDataToEndOfFile];  // 读取数据
     
     NSString *string = [[NSString alloc] initWithData: data
                                    encoding: NSUTF8StringEncoding];
-    return [string componentsSeparatedByString:@"\n"];
+    NSArray<NSString *> *paths = [string componentsSeparatedByString:@"\n"];
+    return paths;
+//    NSMutableArray<NSString *> *results = [NSMutableArray array];
+//    for (NSString *path in paths) {
+//        if ([self checkImageFile:path]) {
+//            [results addObject:path];
+//        }
+//    }
+//    return [results copy];
 }
 
-- (double)similarityBetween:(NSString *)sourceFile to:(NSString *)targetFile
+//- (BOOL)checkImageFile:(NSString *)filePath
+//{
+//    __block BOOL dataCheck = NO;
+//    NSTask *imageChecker = [[NSTask alloc] init];
+//    imageChecker.launchPath = @"/usr/bin/file";
+//    imageChecker.arguments = @[filePath];
+//    NSPipe *pipe = [NSPipe pipe];
+//    imageChecker.standardOutput = pipe;
+//    NSFileHandle *file = [pipe fileHandleForReading];   // 句柄
+//    [imageChecker launch];
+//    NSData *data = [file readDataToEndOfFile];  // 读取数据
+//    NSString *string = [[NSString alloc] initWithData: data
+//                                             encoding: NSUTF8StringEncoding];
+//    [[string componentsSeparatedByString:@" "] enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        if ([obj isEqualToString:@"image"]) {
+//            *stop = YES;
+//            dataCheck = YES;
+//        }
+//    }];
+//    
+//    BOOL extensionCheck = [filePath.pathExtension isEqualToString:@"pdf"] || [filePath.pathExtension isEqualToString:@"PDF"];
+//    return dataCheck||extensionCheck;
+//}
+
+- (double)similarityBetweenSourceImage:(NSImage *)sourceImage sourceFile:(NSString *)sourceFile toTargetImage:(NSImage *)targetImage targetFile:(NSString *)targetFile
 {
     double result;
     double weightOfAspectRatio = 0.3;
     
-    NSImage *source = [[NSImage alloc] initWithContentsOfFile:sourceFile];
-    NSImage *target = [[NSImage alloc] initWithContentsOfFile:targetFile];
-    
     NSDictionary *sourceVector = self.vectorCache[sourceFile];
     if (!sourceVector) {
-        sourceVector = [source abstractVector];
-        self.vectorCache[sourceFile]=sourceVector;
+        sourceVector = [sourceImage abstractVector];
+        self.vectorCache[sourceFile] = sourceVector;
     }
     
     NSDictionary *targetVector = self.vectorCache[targetFile];
     if (!targetVector) {
-        targetVector = [target abstractVector];
-        self.vectorCache[targetFile]=targetVector;
+        targetVector = [targetImage abstractVector];
+        self.vectorCache[targetFile] = targetVector;
     }
     
     double sourceAspectRatio = ((NSNumber *)sourceVector[KEY_ASPECT_RATIO]).doubleValue;

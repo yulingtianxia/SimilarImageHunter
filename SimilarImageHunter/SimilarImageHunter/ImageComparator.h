@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface ImageComparator : NSObject
+@property (nonatomic) BOOL checkExtension;
 - (NSArray<NSString *> *)collectImagePathsInRootPath:(NSString *)rootPath;
-- (double)similarityBetween:(NSString *)sourceFile to:(NSString *)targetFile;
+- (double)similarityBetweenSourceImage:(NSImage *)sourceImage sourceFile:(NSString *)sourceFile toTargetImage:(NSImage *)targetImage targetFile:(NSString *)targetFile;
 
 @end

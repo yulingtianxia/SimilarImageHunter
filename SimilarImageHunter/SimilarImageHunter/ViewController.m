@@ -22,6 +22,8 @@
 @property (weak) IBOutlet NSOutlineView *resultTable;
 @property (weak) IBOutlet NSButton *clearBtn;
 @property (weak) IBOutlet NSButton *cancelBtn;
+@property (weak) IBOutlet NSButton *checkExtensionBtn;
+
 @property (nonatomic) BOOL *cancelledPtr;
 @property (nonnull,nonatomic) NSMutableArray<NSDictionary<NSString *,id> *> *resultData;
 @end
@@ -41,6 +43,40 @@
     // Update the view, if already loaded.
 }
 
+#pragma mark - buttons
+
+- (IBAction)selectSourcePath:(NSButton *)sender {
+    NSOpenPanel* openDlg = [NSOpenPanel openPanel];
+    openDlg.prompt = @"Select";
+    openDlg.canChooseFiles = YES;
+    openDlg.canChooseDirectories = YES;
+    openDlg.allowsMultipleSelection = NO;
+    
+    if ([openDlg runModal] == NSFileHandlingPanelOKButton)
+    {
+        NSURL *fileURL = [openDlg URL];
+        self.sourcePathTF.stringValue = fileURL.path;
+    }
+}
+
+- (IBAction)selectTargetPath:(NSButton *)sender {
+    NSOpenPanel* openDlg = [NSOpenPanel openPanel];
+    openDlg.prompt = @"Select";
+    openDlg.canChooseFiles = YES;
+    openDlg.canChooseDirectories = YES;
+    openDlg.allowsMultipleSelection = NO;
+    
+    if ([openDlg runModal] == NSFileHandlingPanelOKButton)
+    {
+        NSURL *fileURL = [openDlg URL];
+        self.targetPathTF.stringValue = fileURL.path;
+    }
+}
+
+- (IBAction)checkExtionsion:(NSButton *)sender {
+    self.comparator.checkExtension = (sender.state == NSOnState);
+}
+
 - (IBAction)huntClick:(NSButton *)sender {
     sender.enabled = NO;
     __block BOOL cancelled = NO;
@@ -50,16 +86,29 @@
         NSMutableDictionary<NSString *,NSNumber *> *similarityMap = [NSMutableDictionary dictionary];
         NSArray<NSString *> *sourcePaths = [self.comparator collectImagePathsInRootPath:self.sourcePathTF.stringValue];
         NSArray<NSString *> *targetPaths = [self.comparator collectImagePathsInRootPath:self.targetPathTF.stringValue];
-        
+        NSMutableArray<NSString *> *invalidFiles = [NSMutableArray array];
         for (NSString *sourcePath in sourcePaths) {
             if (cancelled) {
                 break;
+            }
+            NSImage *sourceImage = [[NSImage alloc] initWithContentsOfFile:sourcePath];
+            if (!sourceImage) {
+                [invalidFiles addObject:sourcePath];
+                continue;
             }
             for (NSString *obj in targetPaths) {
                 if (cancelled) {
                     break;
                 }
-                NSNumber *similarity = @([self.comparator similarityBetween:sourcePath to:obj]);
+                if ([invalidFiles containsObject:obj]) {
+                    continue;
+                }
+                NSImage *targetImage = [[NSImage alloc] initWithContentsOfFile:obj];
+                if (!targetImage) {
+                    [invalidFiles addObject:obj];
+                    continue;
+                }
+                NSNumber *similarity = @([self.comparator similarityBetweenSourceImage:sourceImage sourceFile:sourcePath toTargetImage:targetImage targetFile:obj]);
                 similarityMap[obj]=similarity;
             }
             __block NSNumber *max = @0;
@@ -106,9 +155,10 @@
     if (self.cancelledPtr) {
         *self.cancelledPtr = YES;
     }
+    self.huntBtn.enabled = YES;
 }
 
-#pragma mark NSOutlineViewDataSource
+#pragma mark - NSOutlineViewDataSource
 
 - (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item
 {

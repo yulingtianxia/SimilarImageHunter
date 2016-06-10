@@ -1,1 +1,0 @@
-find $1 -name '*.jpg' -or -name '*.png' -or -name '*.ico' -or -name '*.tiff'

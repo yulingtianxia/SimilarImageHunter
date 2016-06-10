@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A434F4AB1C460B550078080A /* cacheimages in Resources */ = {isa = PBXBuildFile; fileRef = A434F4AA1C460B550078080A /* cacheimages */; };
+		A434F4AB1C460B550078080A /* find_image_with_extension in Resources */ = {isa = PBXBuildFile; fileRef = A434F4AA1C460B550078080A /* find_image_with_extension */; };
 		A494D3C91C454CB800F6269D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A494D3C81C454CB800F6269D /* AppDelegate.m */; };
 		A494D3CC1C454CB800F6269D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A494D3CB1C454CB800F6269D /* main.m */; };
 		A494D3CF1C454CB800F6269D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A494D3CE1C454CB800F6269D /* ViewController.m */; };
@@ -15,10 +15,11 @@
 		A494D3D41C454CB800F6269D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A494D3D21C454CB800F6269D /* Main.storyboard */; };
 		A494D3DD1C4552BC00F6269D /* NSImage+Processor.m in Sources */ = {isa = PBXBuildFile; fileRef = A494D3DC1C4552BC00F6269D /* NSImage+Processor.m */; };
 		A494D3E01C455D9C00F6269D /* ImageComparator.m in Sources */ = {isa = PBXBuildFile; fileRef = A494D3DF1C455D9C00F6269D /* ImageComparator.m */; };
+		A4CC35381D0AC43A00A400F0 /* find_image_without_extension in Resources */ = {isa = PBXBuildFile; fileRef = A4CC35371D0AC43A00A400F0 /* find_image_without_extension */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A434F4AA1C460B550078080A /* cacheimages */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cacheimages; sourceTree = "<group>"; };
+		A434F4AA1C460B550078080A /* find_image_with_extension */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = find_image_with_extension; sourceTree = "<group>"; };
 		A494D3C41C454CB800F6269D /* SimilarImageHunter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimilarImageHunter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A494D3C71C454CB800F6269D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A494D3C81C454CB800F6269D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -33,6 +34,7 @@
 		A494D3DE1C455D9C00F6269D /* ImageComparator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageComparator.h; sourceTree = "<group>"; };
 		A494D3DF1C455D9C00F6269D /* ImageComparator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageComparator.m; sourceTree = "<group>"; };
 		A4CC35361D095AA800A400F0 /* SimilarImageHunter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SimilarImageHunter.entitlements; sourceTree = "<group>"; };
+		A4CC35371D0AC43A00A400F0 /* find_image_without_extension */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = find_image_without_extension; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +80,8 @@
 				A494D3DC1C4552BC00F6269D /* NSImage+Processor.m */,
 				A494D3DE1C455D9C00F6269D /* ImageComparator.h */,
 				A494D3DF1C455D9C00F6269D /* ImageComparator.m */,
-				A434F4AA1C460B550078080A /* cacheimages */,
+				A434F4AA1C460B550078080A /* find_image_with_extension */,
+				A4CC35371D0AC43A00A400F0 /* find_image_without_extension */,
 			);
 			path = SimilarImageHunter;
 			sourceTree = "<group>";
@@ -156,7 +159,8 @@
 			files = (
 				A494D3D11C454CB800F6269D /* Assets.xcassets in Resources */,
 				A494D3D41C454CB800F6269D /* Main.storyboard in Resources */,
-				A434F4AB1C460B550078080A /* cacheimages in Resources */,
+				A4CC35381D0AC43A00A400F0 /* find_image_without_extension in Resources */,
+				A434F4AB1C460B550078080A /* find_image_with_extension in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
