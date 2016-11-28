@@ -23,6 +23,7 @@
 @property (weak) IBOutlet NSButton *clearBtn;
 @property (weak) IBOutlet NSButton *cancelBtn;
 @property (weak) IBOutlet NSButton *checkExtensionBtn;
+@property (weak) IBOutlet NSButton *ignoreRepeatFileBtn;
 
 @property (nonatomic) BOOL *cancelledPtr;
 @property (nonnull,nonatomic) NSMutableArray<NSDictionary<NSString *,id> *> *resultData;
@@ -90,6 +91,9 @@
         for (NSString *sourcePath in sourcePaths) {
             if (cancelled) {
                 break;
+            }
+            if (self.ignoreRepeatFileBtn.state == NSOnState) {
+                continue;
             }
             NSImage *sourceImage = [[NSImage alloc] initWithContentsOfFile:sourcePath];
             if (!sourceImage) {
