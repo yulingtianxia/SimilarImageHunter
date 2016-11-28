@@ -92,9 +92,6 @@
             if (cancelled) {
                 break;
             }
-            if (self.ignoreRepeatFileBtn.state == NSOnState) {
-                continue;
-            }
             NSImage *sourceImage = [[NSImage alloc] initWithContentsOfFile:sourcePath];
             if (!sourceImage) {
                 [invalidFiles addObject:sourcePath];
@@ -103,6 +100,9 @@
             for (NSString *obj in targetPaths) {
                 if (cancelled) {
                     break;
+                }
+                if (self.ignoreRepeatFileBtn.state == NSOnState && [sourcePath isEqualToString:obj]) {
+                    continue;
                 }
                 if ([invalidFiles containsObject:obj]) {
                     continue;
