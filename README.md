@@ -14,6 +14,7 @@ Mac OS X 上的小工具，用来查找相似内容的图片。它会将 Target 
 6. 在 Hunt 的过程中随时可以按 Cancel 按钮取消当前任务
 7. 按 Clear 按钮清空当前页面所有信息
 8. 勾选 "Check Extension" 则会在查找图片时检查文件后缀名，加快筛选速度
+9. 勾选 "Ignore Duplicate File" 则可忽略重复路径文件。
 
 如果目标路径中有多张图片相似度相同且最大，这些图片都会被列出来。树形列表第一列的父节点内容为原始路径中的图片，子节点为目标路径中匹配到的最佳相似内容图片。列表第二列为相似度。
 
@@ -29,7 +30,7 @@ https://itunes.apple.com/cn/app/similarimagehunter/id1122434637?mt=12
 
 ### GitHub Release
 
-[SimilarImageHunter v1.1](https://github.com/yulingtianxia/SimilarImageHunter/releases/tag/v1.1)
+[SimilarImageHunter](https://github.com/yulingtianxia/SimilarImageHunter/releases/)
 
 ## LICENSE
 
