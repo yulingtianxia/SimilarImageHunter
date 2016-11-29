@@ -23,7 +23,7 @@
 @property (weak) IBOutlet NSButton *clearBtn;
 @property (weak) IBOutlet NSButton *cancelBtn;
 @property (weak) IBOutlet NSButton *checkExtensionBtn;
-@property (weak) IBOutlet NSButton *ignoreRepeatFileBtn;
+@property (weak) IBOutlet NSButton *ignoreDuplicateFileBtn;
 
 @property (nonatomic) BOOL *cancelledPtr;
 @property (nonnull,nonatomic) NSMutableArray<NSDictionary<NSString *,id> *> *resultData;
@@ -102,7 +102,7 @@
                 if (cancelled) {
                     break;
                 }
-                if (self.ignoreRepeatFileBtn.state == NSOnState && [sourcePath isEqualToString:obj]) {
+                if (self.ignoreDuplicateFileBtn.state == NSOnState && [sourcePath isEqualToString:obj]) {
                     continue;
                 }
                 if ([invalidFiles containsObject:obj]) {

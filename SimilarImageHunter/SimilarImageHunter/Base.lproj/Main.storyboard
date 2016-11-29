@@ -832,8 +832,8 @@
                                         </connections>
                                     </button>
                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="JgJ-Vq-foY">
-                                        <rect key="frame" x="157" y="203" width="124" height="18"/>
-                                        <buttonCell key="cell" type="check" title="Igore Repeat File" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="rd4-YD-ibk">
+                                        <rect key="frame" x="157" y="203" width="139" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Igore Duplicate File" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="rd4-YD-ibk">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
@@ -883,7 +883,7 @@
                         <outlet property="checkExtensionBtn" destination="F1O-FH-dcT" id="I2W-Fk-SUs"/>
                         <outlet property="clearBtn" destination="Lht-NF-l1v" id="dVm-6b-sQ7"/>
                         <outlet property="huntBtn" destination="rVg-Zm-5BY" id="EHy-Vb-hoW"/>
-                        <outlet property="ignoreRepeatFileBtn" destination="JgJ-Vq-foY" id="dA1-JP-uz7"/>
+                        <outlet property="ignoreDuplicateFileBtn" destination="JgJ-Vq-foY" id="NGq-Ts-WtE"/>
                         <outlet property="resultTable" destination="l5y-md-h9i" id="R29-fG-juR"/>
                         <outlet property="sourcePathTF" destination="twc-4L-mWs" id="u4n-v6-ZFV"/>
                         <outlet property="targetPathTF" destination="cbm-fj-Y4W" id="DKV-NM-bNt"/>
