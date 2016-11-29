@@ -84,7 +84,7 @@
     self.resultData = [NSMutableArray array];
     [self.resultTable reloadData];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSMutableDictionary<NSString *,NSNumber *> *similarityMap = [NSMutableDictionary dictionary];
+        
         NSArray<NSString *> *sourcePaths = [self.comparator collectImagePathsInRootPath:self.sourcePathTF.stringValue];
         NSArray<NSString *> *targetPaths = [self.comparator collectImagePathsInRootPath:self.targetPathTF.stringValue];
         NSMutableArray<NSString *> *invalidFiles = [NSMutableArray array];
@@ -92,6 +92,7 @@
             if (cancelled) {
                 break;
             }
+            NSMutableDictionary<NSString *,NSNumber *> *similarityMap = [NSMutableDictionary dictionary];
             NSImage *sourceImage = [[NSImage alloc] initWithContentsOfFile:sourcePath];
             if (!sourceImage) {
                 [invalidFiles addObject:sourcePath];
