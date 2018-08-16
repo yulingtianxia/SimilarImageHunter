@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11542"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -658,6 +659,9 @@
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <value key="minSize" type="size" width="550" height="270"/>
                         <value key="minFullScreenContentSize" type="size" width="550" height="270"/>
+                        <connections>
+                            <outlet property="delegate" destination="B8D-0N-5wS" id="vOS-Gt-q1w"/>
+                        </connections>
                     </window>
                     <connections>
                         <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
@@ -734,7 +738,7 @@
                                                     <tableViewGridLines key="gridStyleMask" vertical="YES"/>
                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                     <tableColumns>
-                                                        <tableColumn width="418.03125" minWidth="40" maxWidth="1000" id="FMO-ub-FNK">
+                                                        <tableColumn identifier="" width="418.03125" minWidth="40" maxWidth="1000" id="FMO-ub-FNK">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Image Path">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -832,8 +836,8 @@
                                         </connections>
                                     </button>
                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="JgJ-Vq-foY">
-                                        <rect key="frame" x="157" y="203" width="139" height="18"/>
-                                        <buttonCell key="cell" type="check" title="Igore Duplicate File" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="rd4-YD-ibk">
+                                        <rect key="frame" x="157" y="203" width="146" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Ignore Duplicate File" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="rd4-YD-ibk">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
