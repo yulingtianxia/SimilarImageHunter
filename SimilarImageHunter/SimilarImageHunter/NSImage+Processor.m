@@ -74,7 +74,7 @@
 
 -(UInt32)areaOfComponent:(UInt32)component
 {
-    return component/8;
+    return component/32;
 }
 
 -(UInt32)areaOfX:(NSUInteger)x y:(NSUInteger)y width:(NSUInteger)width height:(NSUInteger)height
