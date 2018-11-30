@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
+        <deployment version="101100" identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -652,7 +652,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Similar Image Hunter" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="Similar Image Hunter" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="550" height="270"/>
@@ -675,7 +675,7 @@
         <scene sceneID="hIz-AP-VOD">
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" sceneMemberID="viewController">
-                    <visualEffectView key="view" appearanceType="vibrantDark" blendingMode="behindWindow" material="appearanceBased" state="active" id="uKy-yM-nGX">
+                    <visualEffectView key="view" appearanceType="vibrantDark" blendingMode="behindWindow" material="ultraDark" state="active" id="uKy-yM-nGX">
                         <rect key="frame" x="0.0" y="0.0" width="550" height="300"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
@@ -738,7 +738,7 @@
                                                     <tableViewGridLines key="gridStyleMask" vertical="YES"/>
                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                     <tableColumns>
-                                                        <tableColumn identifier="" width="418.03125" minWidth="40" maxWidth="1000" id="FMO-ub-FNK">
+                                                        <tableColumn width="418.03125" minWidth="40" maxWidth="1000" id="FMO-ub-FNK">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Image Path">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -772,11 +772,11 @@
                                             </subviews>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                         </clipView>
-                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="Y3O-zq-aBc">
+                                        <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="Y3O-zq-aBc">
                                             <rect key="frame" x="1" y="157" width="508" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
-                                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="Oi3-PJ-1EZ">
+                                        <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Oi3-PJ-1EZ">
                                             <rect key="frame" x="224" y="17" width="15" height="102"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
@@ -806,7 +806,7 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="q37-ZN-bJX">
-                                        <rect key="frame" x="480" y="258" width="50" height="19"/>
+                                        <rect key="frame" x="480" y="259" width="50" height="19"/>
                                         <buttonCell key="cell" type="roundRect" title="Select" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mfD-tw-ows">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="cellTitle"/>
@@ -816,7 +816,7 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sLe-BI-JSx">
-                                        <rect key="frame" x="480" y="228" width="50" height="19"/>
+                                        <rect key="frame" x="480" y="229" width="50" height="19"/>
                                         <buttonCell key="cell" type="roundRect" title="Select" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="UC0-Xj-c93">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="cellTitle"/>
@@ -826,7 +826,7 @@
                                         </connections>
                                     </button>
                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="F1O-FH-dcT">
-                                        <rect key="frame" x="18" y="203" width="123" height="18"/>
+                                        <rect key="frame" x="18" y="202" width="123" height="18"/>
                                         <buttonCell key="cell" type="check" title="Check Extension" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" sound="Sosumi" inset="2" id="RlJ-GA-tHX">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -836,7 +836,7 @@
                                         </connections>
                                     </button>
                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="JgJ-Vq-foY">
-                                        <rect key="frame" x="157" y="203" width="146" height="18"/>
+                                        <rect key="frame" x="157" y="202" width="146" height="18"/>
                                         <buttonCell key="cell" type="check" title="Ignore Duplicate File" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="rd4-YD-ibk">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -867,6 +867,7 @@
                                     <constraint firstItem="dkC-Mb-DT0" firstAttribute="baseline" secondItem="twc-4L-mWs" secondAttribute="baseline" id="jgN-g0-PZ2"/>
                                     <constraint firstItem="Lht-NF-l1v" firstAttribute="baseline" secondItem="rVg-Zm-5BY" secondAttribute="baseline" id="lon-xw-TbL"/>
                                     <constraint firstItem="rVg-Zm-5BY" firstAttribute="top" secondItem="cbm-fj-Y4W" secondAttribute="bottom" constant="8" id="mlT-Xw-d3E"/>
+                                    <constraint firstItem="Lht-NF-l1v" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JgJ-Vq-foY" secondAttribute="trailing" constant="8" symbolic="YES" id="q0m-F7-dbu"/>
                                     <constraint firstItem="F1O-FH-dcT" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="rpO-na-awo"/>
                                     <constraint firstItem="UaU-dU-mLS" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="tPx-Be-LeR"/>
                                     <constraint firstItem="Z2z-Ey-9O4" firstAttribute="baseline" secondItem="rVg-Zm-5BY" secondAttribute="baseline" id="tXf-7A-N8H"/>

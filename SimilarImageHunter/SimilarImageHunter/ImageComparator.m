@@ -104,7 +104,7 @@
     
     double sourceAspectRatio = ((NSNumber *)sourceVector[KEY_ASPECT_RATIO]).doubleValue;
     double targetAspectRatio = ((NSNumber *)targetVector[KEY_ASPECT_RATIO]).doubleValue;
-    double similarityOfAspectRatio = 1-fabs(sourceAspectRatio-targetAspectRatio)/sourceAspectRatio;
+    double similarityOfAspectRatio = 1 - fabs(sourceAspectRatio - targetAspectRatio) / sourceAspectRatio;
     
     NSDictionary<NSNumber *,NSNumber *> *sourcePixelVector = sourceVector[KEY_PIXELVECTOR];
     NSDictionary<NSNumber *,NSNumber *> *targetPixelVector = targetVector[KEY_PIXELVECTOR];
@@ -116,7 +116,7 @@
     [sourcePixelVector enumerateKeysAndObjectsUsingBlock:^(NSNumber * _Nonnull key, NSNumber * _Nonnull obj, BOOL * _Nonnull stop) {
         NSNumber *targetObj = targetPixelVector[key];
         if (targetObj) {
-            similarityOfPixelVector += obj.doubleValue*targetObj.doubleValue;
+            similarityOfPixelVector += obj.doubleValue * targetObj.doubleValue;
         }
         sourceRank += obj.doubleValue * obj.doubleValue;
     }];
@@ -129,7 +129,7 @@
     
     targetRank = sqrt(targetRank);
     
-    similarityOfPixelVector = similarityOfPixelVector/(sourceRank*targetRank);
+    similarityOfPixelVector = similarityOfPixelVector / (sourceRank * targetRank);
     
     result = similarityOfAspectRatio*weightOfAspectRatio + similarityOfPixelVector*(1-weightOfAspectRatio);
     
